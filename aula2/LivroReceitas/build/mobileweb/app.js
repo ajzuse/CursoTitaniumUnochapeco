@@ -1,3 +1,5 @@
+Ti.include('../components/bd.js');
+
 function criarJanela(_exitOnClose) {
 	_exitOnClose = typeof _exitOnClose == 'undefined' 
 	                                   ? false 
@@ -24,6 +26,8 @@ function esconderBarraJanela(_janela) {
 }
 
 ( function(){
+	alert(tabelaExiste('Categoria'));
+	
 	var janelaPrincipal = require('forms/JanelaPrincipal')();
 	janelaPrincipal.criar();
 }());

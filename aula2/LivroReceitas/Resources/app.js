@@ -1,3 +1,5 @@
+Ti.include('../components/bd.js');
+
 function criarJanela(_exitOnClose) {
 	_exitOnClose = typeof _exitOnClose == 'undefined' 
 	                                   ? false 

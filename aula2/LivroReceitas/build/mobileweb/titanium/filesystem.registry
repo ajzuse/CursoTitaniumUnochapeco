@@ -1,10 +1,10 @@
-ts	1414245673000
+ts	1414253837000
 Default-Landscape.png	446500
 Default-Portrait.png	56963
 Default.png	87123
 KS_nav_ui.png	748
 KS_nav_views.png	683
-app.js	676
+app.js	753
 appicon.png	16659
 appicon144.png	23341
 apple-touch-icon-114x114-precomposed.png	15820
@@ -13,6 +13,7 @@ apple-touch-icon-72x72-precomposed.png	8844
 apple-touch-icon-precomposed.png	6790
 components
 	Banner.js	1026
+	bd.js	315
 favicon.ico	1068
 forms
 	Categorias.js	1144
