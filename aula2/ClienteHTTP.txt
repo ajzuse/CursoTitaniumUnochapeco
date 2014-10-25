@@ -1,0 +1,14 @@
+function success(){
+    var json = JSON.parse(this.responseText);
+
+    for(i in json){
+        Ti.API.info(json[i].idMandante + ' ' + json[i].golsMandante + ' x ' json[i].golsVisitante + json[i].idVisitante);
+    }
+}
+
+client = Ti.Network.createHttpClient({
+    onload: success
+});
+
+client.open('GET', 'http://162.220.60.98/index.php/chapecoense/rodada/get');
+client.send();
