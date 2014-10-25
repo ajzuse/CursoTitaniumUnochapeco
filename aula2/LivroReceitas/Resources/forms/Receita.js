@@ -18,6 +18,10 @@ function Receita(){
 		janela.add(banner.view());
 		janela.add(scrollable);
 		
+		Ti.App.addEventListener('FecharJanelaReceita', function(){
+			janela.close();
+		});
+		
 		banner.onVoltar(function(){
 			janela.close();
 		});

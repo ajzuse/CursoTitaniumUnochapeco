@@ -101,12 +101,61 @@ function DescricaoReceita() {
 		if ( typeof _idReceita == 'undefined') {
 			bloquearCampos();
 			carregarDados(_idReceita);
+		} else {
+			adicionarBotoesCadastro();	
 		}
 	};
 
 	self.view = function() {
 		return view;
 	};
+	
+	function adicionarBotoesCadastro(){
+		var btnGravar = Ti.UI.createButton({
+			bottom: '2%',
+			left: '2%',
+			width: '47%',
+			title: 'Gravar'
+		});
+		
+		var btnCancelar = Ti.UI.createButton({
+			bottom: '2%',
+			right: '2%',
+			width: '47%',
+			title: 'Cancelar'
+		});
+		
+		view.add(btnGravar);
+		view.add(btnCancelar);
+		
+		btnGravar.addEventListener('click', function(){
+			var idCategoria = inserirCategoria(edtCategoria.value);
+			var idReceita = buscarNovoId('Receita');
+			var nome = "nome da receita";
+			var link = 'LINK DA IMAGEM';
+			var sql = "INSERT INTO Receita VALUES(" + idReceita +
+			"," + idCategoria + ",'" + nome + "'," +
+			edtTempoPreparo.value + "," + edtRendimento.value +
+			"," + edtNota.value + ",'" + link + "')";
+			
+			executarBD(sql); 
+			
+		});
+		
+		btnCancelar.addEventListener('click', function(){
+			var alert = Ti.UI.createAlertDialog({
+				message: "Deseja realmente cancelar?",
+				buttonNames: ['Sim', 'Não']
+			});
+			
+			alert.addEventListener('click', function(e){
+				if(e.index == 0)
+					Ti.App.fireEvent('FecharJanelaReceita');
+			});
+			
+			alert.show();
+		});
+	}
 
 	function bloquearCampos() {
 		edtCategoria.setEnabled(false);

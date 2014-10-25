@@ -32,17 +32,17 @@ function validarBaseDados() {
 
 function criarTabela(_nome, _campos) {
 	var sql = 'CREATE TABLE ' + _nome + ' (';
-	
-	for (i in _campos){
+
+	for (i in _campos) {
 		sql += _campos[i].nome + ' ' + _campos[i].tipo;
-		
-		if(i != _campos.length - 1) {
+
+		if (i != _campos.length - 1) {
 			sql += ',';
 		}
-	} 
-	
+	}
+
 	sql += ');';
-	
+
 	executarBD(sql);
 }
 
@@ -101,4 +101,57 @@ function criarTabelas() {
 	criarTabela('Categoria', categoria);
 	criarTabela('Receita', receita);
 	criarTabela('Ingrediente', ingrediente);
+}
+
+function verificarCategoriaExiste(_nome) {
+	if ( typeof _nome == 'undefined') {
+		return false;
+	}
+
+	var sql = "SELECT id FROM Categoria WHERE nome = '" + _nome + "'";
+	var bd = abrirBaseDados();
+
+	var existe = bd.execute(sql).isValidRow();
+
+	bd.close();
+	return existe;
+}
+
+function inserirCategoria(_nome) {
+	var id = buscarIdCategoria(_nome);
+
+	if (!verificarCategoriaExiste(_nome)) {
+		var sql = "INSERT INTO Categoria VALUES(" + id + ",'" + _nome + "');";
+		executarBD(sql);
+	}
+
+	return id;
+}
+
+function buscarIdCategoria(_nome) {
+	var bd = abrirBaseDados();
+	var id;
+	if (verificarCategoriaExiste(_nome)) {
+		var sql = "SELECT id FROM Categoria WHERE nome = '" + _nome + "'";
+		var resultado = bd.execute(sql);
+
+		id = resultado.fieldByName('id');
+	} else {
+		var sql = "SELECT MAX(id) FROM Categoria";
+		var resultado = bd.execute(sql);
+		id = resultado.isValidRow() ? 
+		     parseInt(resultado.fieldByName('id')) + 1 : 0;
+	}
+
+	bd.close();
+}
+
+function buscarNovoId(_nomeTabela) {
+	var bd = abrirBaseDados();
+	var sql = "SELECT MAX(id) FROM " + _nomeTabela;
+	var resultado = bd.execute(sql);
+	id = resultado.isValidRow() ? parseInt(resultado.fieldByName('id')) + 1 : 0;
+	bd.close();
+
+	return id;
 }
