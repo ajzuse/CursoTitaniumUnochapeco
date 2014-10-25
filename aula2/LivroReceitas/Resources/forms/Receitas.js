@@ -36,24 +36,31 @@ function Receitas() {
 	};
 	
 	function carregarDados(_categoria) {
-		var recTeste = ['Bife Bêbado', 'Churrasco', 'Torrada'];
-		var dados = [];
+		var sql = 'SELECT id, nome FROM Receita ';
 		
-		for (receita in recTeste){
+		if(typeof _categoria != 'undefined'){
+			sql += 'WHERE idCategoria = ' + _categoria;
+		}
+		
+		var bd = abrirBaseDados();
+		var dados = [];
+		var resultado = bd.execute(sql);
+		
+		while(resultado.isValidRow()){
 			var row = Ti.UI.createTableViewRow({
-				id: recTeste[receita],
-				nome: recTeste[receita],
+				id: resultado.fieldByName('id'),
 				height: '30dp'
 			});
 			
 			row.add(Ti.UI.createLabel({
-				text: recTeste[receita],
+				text: resultado.fieldByName('nome'),
 				color: 'black'
 			}));
 			
 			dados.push(row);
+			resultado.next();
 		}
-		
+		bd.close();
 		lista.setData(dados);
 	}
 

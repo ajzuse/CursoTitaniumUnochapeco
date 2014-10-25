@@ -39,7 +39,7 @@ function criarTabela(_nome, _campos) {
 		if(i != _campos.length - 1) {
 			sql += ',';
 		}
-	}
+	} 
 	
 	sql += ');';
 	

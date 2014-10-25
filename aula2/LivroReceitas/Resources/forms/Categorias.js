@@ -36,23 +36,25 @@ function Categorias() {
 	};
 	
 	function carregarDados() {
-		var catTeste = ['Pães', 'Tortas', 'Pudins'];
+		var sql = 'SELECT id, nome FROM Categoria';
+		var bd = abrirBaseDados();
 		var dados = [];
-		
-		for (categoria in catTeste){
+		var resultado = bd.execute(sql);
+		while(resultado.isValidRow()){
 			var row = Ti.UI.createTableViewRow({
-				id: catTeste[categoria],
+				id: resultado.fieldByName('id'),
 				height: '30dp'
 			});
 			
 			row.add(Ti.UI.createLabel({
-				text: catTeste[categoria],
+				text: resultado.fieldByName('nome'),
 				color: 'black'
 			}));
 			
 			dados.push(row);
+			resultado.next();
 		}
-		
+		bd.close();
 		lista.setData(dados);
 	}
 

@@ -28,24 +28,32 @@ function Ingredientes() {
 	};
 	
 	function carregarDados(_id) {
-		var ingTeste = ['Carne', 'Sal', 'Cebola', 'Alho'];
+		var sql = 'SELECT id, nome, quantidade, unidade, aplicacao';
+		sql +=    '  FROM Categoria ';
+		sql +=    ' WHERE idReceita = ' + _id;
+		sql +=    'ORDER BY id';
+		var bd = abrirBaseDados();
 		var dados = [];
-		
-		for (ingrediente in ingTeste){
+		var resultado = bd.execute(sql);
+		while(resultado.isValidRow()){
+			var descricao = resultado.fieldByName('quantidade');
+			descricao += ' ' + resultado.fieldByName('unidade');
+			descricao += ' de ' + resultado.fieldByName('nome');
+			
 			var row = Ti.UI.createTableViewRow({
-				id: ingTeste[ingrediente],
-				nome: ingTeste[ingrediente],
+				id: resultado.fieldByName('id'),
 				height: '30dp'
 			});
 			
 			row.add(Ti.UI.createLabel({
-				text: ingTeste[ingrediente],
+				text: descricao,
 				color: 'black'
 			}));
 			
 			dados.push(row);
+			resultado.next();
 		}
-		
+		bd.close();
 		lista.setData(dados);
 	}
 
