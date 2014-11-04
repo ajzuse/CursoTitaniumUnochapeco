@@ -26,6 +26,7 @@ function esconderBarraJanela(_janela) {
 }
 
 ( function(){
+	validarBaseDados();
 	var janelaPrincipal = require('forms/JanelaPrincipal')();
 	janelaPrincipal.criar();
 }());
