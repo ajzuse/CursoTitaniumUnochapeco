@@ -1,8 +1,0 @@
-"/Volumes/Dados/aulas/CursoTitaniumUnochapeco/aula2/LivroReceitas/build/android/gen/android/support/v7/appcompat/R.java"
-"/Volumes/Dados/aulas/CursoTitaniumUnochapeco/aula2/LivroReceitas/build/android/gen/br/edu/unochapeco/receitas/ApplicationStylesheet.java"
-"/Volumes/Dados/aulas/CursoTitaniumUnochapeco/aula2/LivroReceitas/build/android/gen/br/edu/unochapeco/receitas/AssetCryptImpl.java"
-"/Volumes/Dados/aulas/CursoTitaniumUnochapeco/aula2/LivroReceitas/build/android/gen/br/edu/unochapeco/receitas/LivroreceitasActivity.java"
-"/Volumes/Dados/aulas/CursoTitaniumUnochapeco/aula2/LivroReceitas/build/android/gen/br/edu/unochapeco/receitas/LivroreceitasAppInfo.java"
-"/Volumes/Dados/aulas/CursoTitaniumUnochapeco/aula2/LivroReceitas/build/android/gen/br/edu/unochapeco/receitas/LivroreceitasApplication.java"
-"/Volumes/Dados/aulas/CursoTitaniumUnochapeco/aula2/LivroReceitas/build/android/gen/br/edu/unochapeco/receitas/R.java"
-"/Volumes/Dados/aulas/CursoTitaniumUnochapeco/aula2/LivroReceitas/build/android/gen/ti/modules/titanium/ui/R.java"
